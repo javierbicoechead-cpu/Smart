@@ -1,0 +1,53 @@
+databases:
+  - name: vielodb
+    plan: free
+    databaseName: vielodb
+    user: vielouser
+
+services:
+  - type: web
+    name: vielo-smartbet
+    runtime: docker
+    plan: free
+
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+
+    envVars:
+
+      - key: PGHOST
+        fromDatabase:
+          name: vielodb
+          property: host
+
+      - key: PGPORT
+        fromDatabase:
+          name: vielodb
+          property: port
+
+      - key: PGDATABASE
+        fromDatabase:
+          name: vielodb
+          property: database
+
+      - key: PGUSER
+        fromDatabase:
+          name: vielodb
+          property: user
+
+      - key: PGPASSWORD
+        fromDatabase:
+          name: vielodb
+          property: password
+
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+
+      - key: APIFOOTBALL_ENABLED
+        value: true
+
+      - key: ODDS_API_ENABLED
+        value: true
+
+      - key: STRIPE_ENABLED
+        value: true
