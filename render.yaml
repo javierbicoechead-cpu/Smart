@@ -1,8 +1,8 @@
 databases:
   - name: vielodb
     plan: free
-    databaseName: vielodb
-    user: vielouser
+    databaseName: vielodb_p26j
+    user: vielodb_p26j_user
 
 services:
   - type: web
